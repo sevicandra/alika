@@ -1,0 +1,50 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    max-height: 100vh;
+    font-family:'TW CENT MT';
+    flex-wrap:nowrap;
+}
+
+header{
+    flex-basis: 70px;
+    background-color: #dddddd;
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    padding: 0 20px;
+}
+
+main{
+    flex-basis: 100%;
+    overflow: hidden;
+    padding: 30px 0;
+}
+
+footer{
+    flex-basis: 70px;
+    background-color: #dddddd;
+}
+
+.content{
+    height: 100%;
+    padding: 0 30px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+.content > :first-child{
+    flex-basis: 70px;
+}
+.content > :nth-child(2){
+    overflow: auto;
+    flex-basis: 100%;
+}
+

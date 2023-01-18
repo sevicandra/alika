@@ -38,6 +38,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('data_cetaks');
+        Schema::dropIfExists('data_cetak');
     }
 };

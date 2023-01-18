@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DataCetakController;
+use App\Http\Controllers\DataGajiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
@@ -28,7 +29,7 @@ Route::controller(DataCetakController::class)->group(function(){
     Route::get('/data-cetak', 'getDataCetak')->middleware('client');
     Route::get('/data-cetak/find', 'findDataCetak')->middleware('client');
     Route::post('/data-cetak', 'createDataCetak')->middleware('client');
-    Route::post('/data-cetak/{DataCetak}', 'updateDataCetak')->middleware('client');
+    Route::patch('/data-cetak/{DataCetak}', 'updateDataCetak')->middleware('client');
     Route::delete('/data-cetak/{DataCetak}', 'deleteDataCetak')->middleware('client');
 
     Route::get('/data-cetak/asal/get-tahun/{nip}', 'getTahunAsal')->middleware('client');
@@ -46,4 +47,18 @@ Route::controller(DataCetakController::class)->group(function(){
     Route::get('/data-cetak/riwayat/find', 'findCetakRiwayat')->middleware('client');
     Route::get('/data-cetak/riwayat/count', 'countCetakRiwayat')->middleware('client');
 
+});
+
+// Data Gaji API
+Route::controller(DataGajiController::class)->group(function(){
+    Route::get('/data-gaji', 'getDataGaji')->middleware('client');
+    Route::get('/data-gaji/count', 'countDataGaji')->middleware('client');
+    Route::get('/data-gaji/{nip}/{thn}', 'getGaji')->middleware('client');
+    Route::get('/data-gaji/{nip}/{thn}/{bln}', 'getDetailGaji')->middleware('client');
+    Route::get('/data-gaji/find', 'getDataGaji')->middleware('client');
+    Route::get('/data-gaji/get-tahun/{nip}', 'getTahun')->middleware('client');
+
+    Route::post('data-gaji', 'create')->middleware('client');
+    Route::patch('data-gaji/{DataGaji}', 'update')->middleware('client');
+    Route::delete('data-gaji/{DataGaji}', 'delete')->middleware('client');
 });

@@ -10,37 +10,37 @@ class DataGajiController extends Controller
     public function countDataGaji()
     {
         $data = DataGaji::countDataGaji();
-        return response()->json(['data'=>$data], 200);
+        return response()->json(['Data'=>$data], 200);
     }
 
     public function getDataGaji(Request $request)
     {
         $data = DataGaji::getDataGaji($request->id, $request->limit, $request->offset);
-        return response()->json(['data'=>$data], 200);
+        return response()->json(['Data'=>$data], 200);
     }
 
     public function findDataGaji(Request $request)
     {
         $data = DataGaji::findDataGaji($request->id, $request->tahun, $request->limit, $request->offset);
-        return response()->json(['data'=>$data], 200);
+        return response()->json(['Data'=>$data], 200);
     }
 
     public function getTahun($nip)
     {
         $data = DataGaji::getTahun($nip);
-        return response()->json(['data'=>$data], 200);
+        return response()->json(['Data'=>$data], 200);
     }
 
     public function getGaji($nip, $thn)
     {
         $data = DataGaji::getGaji($nip, $thn);
-        return response()->json(['data'=>$data], 200);
+        return response()->json(['Data'=>$data], 200);
     }
 
     public function getDetailGaji($nip, $thn, $bln)
     {
         $data = DataGaji::GetViewBulanGaji($nip, $bln, $thn);
-        return response()->json(['data'=>$data], 200);
+        return response()->json(['Data'=>$data], 200);
     }
 
 
@@ -89,6 +89,7 @@ class DataGajiController extends Controller
 
     public function update(Request $request, DataGaji $DataGaji)
     {
+        return $request;
         $DataGaji->update([
             'kdjns'=>$request->kdjns,
             'kdsatker'=>$request->kdsatker,

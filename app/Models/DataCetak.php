@@ -29,9 +29,9 @@ class DataCetak extends Model
 
     public $timestamps = false;
 
-    public function scopeCountDataCetak($data)
+    public function scopeCountDataCetak()
     {
-        return $data->count();
+        return $this->count();
     }
 
     public function scopeGetDataCetak($data, $id = null, $limit = null, $offset = 0)

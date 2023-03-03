@@ -2,8 +2,11 @@
 
 namespace App\Exceptions;
 
-use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
+use Illuminate\Auth\AuthenticationException;
+use Laravel\Passport\Exceptions\OAuthServerException;
+use Laravel\Passport\Exceptions\MissingScopeException;
+use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
 class Handler extends ExceptionHandler
 {
@@ -46,5 +49,26 @@ class Handler extends ExceptionHandler
         $this->reportable(function (Throwable $e) {
             //
         });
+    }
+
+
+    public function render($request, Throwable $exception)
+    {
+        if ($exception instanceof OAuthServerException || $exception instanceof MissingScopeException) {
+            return response()->json([
+                'error' => 'invalid_token',
+                'message' => 'The access token provided is invalid or has expired.',
+            ], 401);
+        }
+
+        return parent::render($request, $exception);
+    }
+
+    protected function unauthenticated($request, AuthenticationException $exception)
+    {
+        return response()->json([
+            'error' => 'Unauthenticated.',
+            'message' => 'You must be authenticated to access this resource.',
+        ], 401);
     }
 }

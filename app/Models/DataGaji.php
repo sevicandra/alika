@@ -48,9 +48,9 @@ class DataGaji extends Model
 
     public $timestamps = false;
 
-    public function scopeCountDataGaji($data)
+    public function scopeCountDataGaji()
     {
-        return $data->count();
+        return $this->count();
     }
 
     public function scopeGetDataGaji($data, $id = null, $limit = 0, $offset = 0)
@@ -58,7 +58,7 @@ class DataGaji extends Model
         if ($id === null) {
             return $data->limit($limit)->offset($offset)->get();
         } else {
-            return $data->where('id', $id)->get();
+            return $data->find($id);
         }
     }
 

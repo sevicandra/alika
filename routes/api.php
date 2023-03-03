@@ -2,9 +2,12 @@
 
 use App\Http\Controllers\DataCetakController;
 use App\Http\Controllers\DataGajiController;
+use App\Http\Controllers\DataHukdisController;
+use App\Http\Controllers\DataKeluargaController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Models\DataKeluarga;
 
 /*
 |--------------------------------------------------------------------------
@@ -61,4 +64,26 @@ Route::controller(DataGajiController::class)->group(function(){
     Route::post('data-gaji', 'create')->middleware('client');
     Route::patch('data-gaji/{DataGaji}', 'update')->middleware('client');
     Route::delete('data-gaji/{DataGaji}', 'delete')->middleware('client');
+});
+
+//Data Hukdis API
+Route::controller(DataHukdisController::class)->group(function(){
+    Route::get('/data-hukdis/count', 'count')->middleware('client');
+    Route::get('/data-hukdis', 'getDataHukdis')->middleware('client');
+    Route::get('/data-hukdis/{nip}', 'getHukdis')->middleware('client');
+    Route::get('/data-hukdis/find', 'findDataHukdis')->middleware('client');
+    Route::post('/data-hukdis', 'create')->middleware('client');
+    Route::patch('/data-hukdis/{dataHukdis}', 'update')->middleware('client');
+    Route::delete('/data-hukdis/{dataHukdis}', 'delete')->middleware('client');
+});
+
+// Data Keluarga API
+Route::controller(DataKeluargaController::class)->group(function(){
+    Route::get('data-keluarga/count', 'count')->middleware('client');
+    Route::get('data-keluarga', 'getDataKeluarga')->middleware('client');
+    Route::get('data-keluarga/find', 'findDataKeluarga')->middleware('client');
+    Route::get('data-keluarga/{nip}', 'getKeluarga')->middleware('client');
+    Route::post('data-keluarga', 'create')->middleware('client');
+    Route::patch('data-keluarga/{dataKeluarga}', 'update')->middleware('client');
+    Route::delete('data-keluarga/{dataKeluarga}', 'delete')->middleware('client');
 });

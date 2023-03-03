@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Validator;
 use App\Models\DataCetak;
 use Illuminate\Http\Request;
 
@@ -29,7 +30,7 @@ class DataCetakController extends Controller
     public function createDataCetak(Request $request)
     {
 
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'tahun'=>'required',
             'nip_asal'=>'required',
             'nip_tujuan'=>'required',
@@ -40,6 +41,13 @@ class DataCetakController extends Controller
             'tujuan'=>'required',
             'perihal'=>'required',
         ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                 'status'=>false,
+                 'message'=>$validator->errors()
+             ], 422);
+         }
 
         DataCetak::create([
             'tahun'=>$request->tahun,
@@ -60,8 +68,7 @@ class DataCetakController extends Controller
 
     public function updateDataCetak(Request $request, DataCetak $DataCetak)
     {
-
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'tahun'=>'required',
             'nip_asal'=>'required',
             'nip_tujuan'=>'required',
@@ -72,6 +79,13 @@ class DataCetakController extends Controller
             'tujuan'=>'required',
             'perihal'=>'required',
         ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                 'status'=>false,
+                 'message'=>$validator->errors()
+             ], 422);
+         }
 
         $DataCetak->update([
             'tahun'=>$request->tahun,

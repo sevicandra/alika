@@ -10,7 +10,7 @@ class DataKeluargaController extends Controller
 {
     public function count()
     {
-        $data=DataKeluarga::count();
+        $data=DataKeluarga::countDataKeluarga();
         return response()->json(['Data'=>$data], 200);
     }
 

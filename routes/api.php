@@ -4,6 +4,7 @@ use App\Http\Controllers\DataCetakController;
 use App\Http\Controllers\DataGajiController;
 use App\Http\Controllers\DataHukdisController;
 use App\Http\Controllers\DataKeluargaController;
+use App\Http\Controllers\DataKgbController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
@@ -86,4 +87,15 @@ Route::controller(DataKeluargaController::class)->group(function(){
     Route::post('data-keluarga', 'create')->middleware('client');
     Route::patch('data-keluarga/{dataKeluarga}', 'update')->middleware('client');
     Route::delete('data-keluarga/{dataKeluarga}', 'delete')->middleware('client');
+});
+
+// Data KGB API
+Route::controller(DataKgbController::class)->group(function(){
+    Route::get('data-kgb/count', 'count')->middleware('client');
+    Route::get('data-kgb', 'getDataKgb')->middleware('client');
+    Route::get('data-kgb/find', 'findDataKgb')->middleware('client');
+    Route::get('data-kgb/{nip}', 'getKgb')->middleware('client');
+    Route::post('data-kgb', 'create')->middleware('client');
+    Route::patch('data-kgb/{dataKgb}', 'update')->middleware('client');
+    Route::delete('data-kgb/{dataKgb}', 'delete')->middleware('client');
 });

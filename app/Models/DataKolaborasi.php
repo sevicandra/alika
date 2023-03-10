@@ -31,8 +31,7 @@ class DataKolaborasi extends Model
                             ->offset($offset)
                             ->get();
         } else {
-            return $data    ->find($id)
-                            ->get();
+            return $data    ->find($id);
         }
     }
 

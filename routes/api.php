@@ -6,9 +6,11 @@ use App\Http\Controllers\DataHukdisController;
 use App\Http\Controllers\DataKeluargaController;
 use App\Http\Controllers\DataKgbController;
 use App\Http\Controllers\DataKolaborasiController;
+use App\Http\Controllers\DataKurangController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -108,4 +110,17 @@ Route::controller(DataKolaborasiController::class)->group(function(){
     Route::post('data-kolaborasi', 'create')->middleware('client');
     Route::patch('data-kolaborasi/{dataKolaborasi}', 'update')->middleware('client');
     Route::delete('data-kolaborasi/{dataKolaborasi}', 'delete')->middleware('client');
+});
+
+// Data Kurang
+Route::controller(DataKurangController::class)->group(function(){
+    Route::get('/data-kurang/count', 'count')->middleware('client');
+    Route::get('/data-kurang', 'getDataKurang')->middleware('client');
+    Route::get('/data-kurang/find', 'findDataKurang')->middleware('client');
+    Route::get('/data-kurang/tahun', 'getTahun')->middleware('client');
+    Route::get('/data-kurang/bulan', 'getBulan')->middleware('client');
+    Route::get('/data-kurang/{nip}', 'getKurang')->middleware('client');
+    Route::post('/data-kurang', 'create')->middleware('client');
+    Route::patch('/data-kurang/{dataKurang}', 'update')->middleware('client');
+    Route::delete('/data-kurang/{dataKurang}', 'delete')->middleware('client');
 });

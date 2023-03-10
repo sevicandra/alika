@@ -2,51 +2,50 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\DataGaji;
+use App\Models\DataKurang;
 use Illuminate\Http\Request;
 
-class DataGajiController extends Controller
+class DataKurangController extends Controller
 {
-    public function countDataGaji()
+    public function count()
     {
-        $data = DataGaji::countDataGaji();
+        $data   = DataKurang::countDataKurang();
         return response()->json(['Data'=>$data], 200);
     }
 
-    public function getDataGaji(Request $request)
+    public function getDataKurang(Request $request)
     {
-        $data = DataGaji::getDataGaji($request->id, $request->limit, $request->offset);
+        $data   = DataKurang::getDataKurang($request->id, $request->limit, $request->offset);
         return response()->json(['Data'=>$data], 200);
     }
 
-    public function findDataGaji(Request $request)
+    public function findDataKurang(Request $request)
     {
-        $data = DataGaji::findDataGaji($request->id, $request->tahun, $request->limit, $request->offset);
+        $data   = DataKurang::findDataKurang($request->nip, $request->tahun, $request->limit, $request->offset);
         return response()->json(['Data'=>$data], 200);
     }
 
-    public function getTahun($nip)
+    public function getKurang(Request $request, $nip)
     {
-        $data = DataGaji::getTahun($nip);
+        $data   = DataKurang::getKurang($nip, $request->tahun);
         return response()->json(['Data'=>$data], 200);
     }
 
-    public function getGaji($nip, $thn)
+    public function getTahun(Request $request)
     {
-        $data = DataGaji::getGaji($nip, $thn);
+        $data   = DataKurang::getTahun($request->nip);
         return response()->json(['Data'=>$data], 200);
     }
 
-    public function getDetailGaji($nip, $thn, $bln)
+    public function getBulan(Request $request)
     {
-        $data = DataGaji::GetViewBulanGaji($nip, $bln, $thn);
+        $data   = DataKurang::getBulan($request->nip, $request->tahun);
         return response()->json(['Data'=>$data], 200);
     }
-
 
     public function create(Request $request)
     {
-        DataGaji::create([
+        DataKurang::create([
             'kdjns'=>$request->kdjns,
             'kdsatker'=>$request->kdsatker,
             'kdanak'=>$request->kdanak,
@@ -87,9 +86,9 @@ class DataGajiController extends Controller
         ], 200);
     }
 
-    public function update(Request $request, DataGaji $DataGaji)
+    public function update(Request $request, DataKurang $dataKurang)
     {
-        $DataGaji->update([
+        $dataKurang->update([
             'kdjns'=>$request->kdjns,
             'kdsatker'=>$request->kdsatker,
             'kdanak'=>$request->kdanak,
@@ -130,9 +129,9 @@ class DataGajiController extends Controller
         ], 200);
     }
 
-    public function delete(DataGaji $DataGaji)
+    public function delete(DataKurang $dataKurang)
     {
-        $DataGaji->delete();
+        $dataKurang->delete();
         return response()->json([
             'status' => true,
             'message' => 'Data was successfully deleted'

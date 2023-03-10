@@ -5,10 +5,10 @@ use App\Http\Controllers\DataGajiController;
 use App\Http\Controllers\DataHukdisController;
 use App\Http\Controllers\DataKeluargaController;
 use App\Http\Controllers\DataKgbController;
+use App\Http\Controllers\DataKolaborasiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
-use App\Models\DataKeluarga;
 
 /*
 |--------------------------------------------------------------------------
@@ -98,4 +98,14 @@ Route::controller(DataKgbController::class)->group(function(){
     Route::post('data-kgb', 'create')->middleware('client');
     Route::patch('data-kgb/{dataKgb}', 'update')->middleware('client');
     Route::delete('data-kgb/{dataKgb}', 'delete')->middleware('client');
+});
+
+// Data Kolaborasi API
+Route::controller(DataKolaborasiController::class)->group(function(){
+    Route::get('/data-kolaborasi/count', 'count')->middleware('client');
+    Route::get('/data-kolaborasi', 'getDataKolaborasi')->middleware('client');
+    Route::get('data-kolaborasi/find', 'findDataKolaborasi')->middleware('client');
+    Route::post('data-kolaborasi', 'create')->middleware('client');
+    Route::patch('data-kolaborasi/{dataKolaborasi}', 'update')->middleware('client');
+    Route::delete('data-kolaborasi/{dataKolaborasi}', 'delete')->middleware('client');
 });
